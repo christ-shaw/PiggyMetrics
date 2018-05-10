@@ -42,22 +42,22 @@ public class AccountApplication extends ResourceServerConfigurerAdapter {
 		SpringApplication.run(AccountApplication.class, args);
 	}
 
-	@Bean
-	@ConfigurationProperties(prefix = "security.oauth2.client")
-	public ClientCredentialsResourceDetails clientCredentialsResourceDetails() {
-		return new ClientCredentialsResourceDetails();
-	}
-
-	@Bean
-	public RequestInterceptor oauth2FeignRequestInterceptor(){
-		return new OAuth2FeignRequestInterceptor(new DefaultOAuth2ClientContext(), clientCredentialsResourceDetails());
-	}
-
-	@Bean
-	@LoadBalanced
-	public OAuth2RestTemplate clientCredentialsRestTemplate() {
-		return new OAuth2RestTemplate(clientCredentialsResourceDetails());
-	}
+//	@Bean
+//	@ConfigurationProperties(prefix = "security.oauth2.client")
+//	public ClientCredentialsResourceDetails clientCredentialsResourceDetails() {
+//		return new ClientCredentialsResourceDetails();
+//	}
+//
+//	@Bean
+//	public RequestInterceptor oauth2FeignRequestInterceptor(){
+//		return new OAuth2FeignRequestInterceptor(new DefaultOAuth2ClientContext(), clientCredentialsResourceDetails());
+//	}
+//
+//	@Bean
+//	@LoadBalanced
+//	public OAuth2RestTemplate clientCredentialsRestTemplate() {
+//		return new OAuth2RestTemplate(clientCredentialsResourceDetails());
+//	}
 
 	@Bean
 	public ResourceServerTokenServices tokenServices() {
@@ -67,7 +67,7 @@ public class AccountApplication extends ResourceServerConfigurerAdapter {
 	@Override
 	public void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
-				.antMatchers("/" , "/demo").permitAll()
+				.antMatchers("/" , "/demo","/accounts/**").permitAll()
 				.anyRequest().authenticated();
 	}
 }

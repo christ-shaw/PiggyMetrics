@@ -6,8 +6,10 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-@FeignClient(name = "AUTH-SERVICE")
-public interface AuthServiceClient {
+@FeignClient(name = "AUTH-SERVICE",configuration = OAuth2FeignAutoConfiguration.class)
+public interface AuthServiceClient
+{
+
 
 	@RequestMapping(method = RequestMethod.POST, value = "/uaa/users", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	void createUser(User user);

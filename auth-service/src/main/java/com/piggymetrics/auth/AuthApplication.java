@@ -94,7 +94,7 @@ public class AuthApplication {
 					.scopes("ui")
 			.and()
 					.withClient("account-service")
-					.secret("ACCOUNT_SERVICE_PASSWORD")
+					.secret("123")
 					.authorizedGrantTypes("client_credentials", "refresh_token")
 					.scopes("server")
 			.and()
